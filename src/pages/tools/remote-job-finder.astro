@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RemoteJobFinder from '../../components/RemoteJobFinder';
+---
+
+<BaseLayout
+  title="Remote Job Finder — Find the Best Remote Job Platforms for Your Industry"
+  description="Filter by industry, experience level, and job type to find the best remote job platforms. Compare 10+ platforms side by side with pros, cons, salary ranges, and ratings."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">💼 Remote Job Finder</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Not all remote job platforms are equal. Filter by your industry, experience level, and preferred job type to find the best platforms — then compare them side by side.
+        </p>
+        <div class="mt-4 flex justify-center gap-6 text-sm text-gray-500">
+          <span>📋 10+ platforms compared</span>
+          <span>🔍 Filter by industry</span>
+          <span>📊 Side-by-side comparison</span>
+        </div>
+      </div>
+      <RemoteJobFinder client:load />
+    </div>
+  </section>
+</BaseLayout>

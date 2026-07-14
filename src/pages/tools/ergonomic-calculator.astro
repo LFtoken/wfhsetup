@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ErgonomicCalculator from '../../components/ErgonomicCalculator';
+---
+
+<BaseLayout
+  title="Ergonomic Calculator — Find Your Perfect Desk Height, Chair Height & Monitor Position"
+  description="Enter your height and get precise ergonomic measurements for your desk, chair, monitor, armrests, and keyboard position. Based on OSHA and ANSI/BIFMA guidelines."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">📏 Ergonomic Calculator</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Enter your height and desk type. Get exact measurements for desk height, chair height, monitor position, and more — all based on published ergonomic standards.
+        </p>
+        <div class="mt-4 flex justify-center gap-6 text-sm text-gray-500">
+          <span>🔬 Based on OSHA & ANSI/BIFMA</span>
+          <span>🕐 Instant results</span>
+          <span>📱 Imperial & Metric</span>
+        </div>
+      </div>
+      <ErgonomicCalculator client:load />
+    </div>
+  </section>
+</BaseLayout>

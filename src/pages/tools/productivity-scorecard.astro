@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductivityScorecard from '../../components/ProductivityScorecard';
+---
+
+<BaseLayout
+  title="WFH Productivity Scorecard — Assess Your Remote Work Performance in 5 Minutes"
+  description="Answer 14 questions across 5 categories (workspace, habits, focus, tools, wellness). Get a detailed productivity score with radar chart and personalized improvement tips."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">📊 WFH Productivity Scorecard</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          How productive is your remote work setup — really? Answer 14 questions across 5 categories and get a detailed score, radar chart, and targeted tips to level up.
+        </p>
+        <div class="mt-4 flex justify-center gap-6 text-sm text-gray-500">
+          <span>🕐 Takes ~5 minutes</span>
+          <span>📊 Radar chart visualization</span>
+          <span>🎯 Personalized action plan</span>
+        </div>
+      </div>
+      <ProductivityScorecard client:load />
+    </div>
+  </section>
+</BaseLayout>

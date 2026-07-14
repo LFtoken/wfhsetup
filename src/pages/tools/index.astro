@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolCard from '../../components/ToolCard.astro';
+---
+
+<BaseLayout
+  title="Free Remote Work Tools — Planner, Calculator & More"
+  description="Free interactive tools for remote workers: plan your home office layout, calculate ergonomic measurements, find remote jobs, and assess your WFH productivity."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">Free Tools for Remote Workers</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          No sign-up. No ads. Just practical tools to help you work better from home.
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ToolCard title="Home Office Planner" description="Plan your ideal home office layout based on your room, budget, and work style. Get a personalized furniture layout and gear recommendations." icon="📐" href="/tools/home-office-planner/" />
+        <ToolCard title="Ergonomic Calculator" description="Enter your height and get precise desk height, chair height, and monitor position recommendations for a pain-free setup." icon="📏" href="/tools/ergonomic-calculator/" />
+        <ToolCard title="Remote Job Finder" description="Find the best remote job platforms for your industry. Compare features, job types, and salary ranges across 15+ platforms." icon="💼" href="/tools/remote-job-finder/" />
+        <ToolCard title="Productivity Scorecard" description="Assess your WFH productivity across environment, habits, tools, and wellness. Get a detailed score and personalized improvement plan." icon="📊" href="/tools/productivity-scorecard/" />
+      </div>
+    </div>
+  </section>
+
+  <!-- How Our Tools Work -->
+  <section class="py-20 bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="section-title">How Our Tools Work</h2>
+        <p class="section-subtitle max-w-2xl mx-auto">Everything runs in your browser. No data is ever sent to a server.</p>
+      </div>
+      <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div class="text-center">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-3xl">🔒</div>
+          <h3 class="mt-5 text-lg font-semibold text-gray-900">100% Private</h3>
+          <p class="mt-2 text-sm text-gray-600">All tools run entirely in your browser. Your data never leaves your device. No accounts, no tracking.</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-3xl">⚡</div>
+          <h3 class="mt-5 text-lg font-semibold text-gray-900">Instant Results</h3>
+          <p class="mt-2 text-sm text-gray-600">No loading spinners. No waiting. Get your results immediately as you answer questions or adjust inputs.</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-3xl">📱</div>
+          <h3 class="mt-5 text-lg font-semibold text-gray-900">Works Everywhere</h3>
+          <p class="mt-2 text-sm text-gray-600">Designed for desktop and mobile. Plan your home office from your phone while standing in your actual room.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

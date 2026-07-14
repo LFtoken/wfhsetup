@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const allArticles = [
+  {
+    title: 'The Ultimate Home Office Setup Guide 2026: Everything You Need',
+    excerpt: 'From desk to monitor to lighting — a complete step-by-step guide to building a home office that boosts your productivity and protects your health.',
+    href: '/blog/home-office-setup-guide-2026/',
+    date: '2026-07-15',
+    category: 'Home Office',
+    readTime: '12',
+  },
+  {
+    title: 'Best Home Office Desks 2026: Budget to Premium (With Real User Reviews)',
+    excerpt: 'Compare the best desks for home offices across every price tier. From compact $100 desks to premium standing desks, find the right one for your space and budget.',
+    href: '/blog/best-home-office-desks-2026/',
+    date: '2026-07-15',
+    category: 'Home Office',
+    readTime: '11',
+  },
+  {
+    title: 'Ergonomic Chair Buying Guide: How to Choose the Right One for Your Body',
+    excerpt: 'Stop back pain. Learn exactly what to look for in an ergonomic chair — lumbar support, seat depth, armrests, and the best models at every budget.',
+    href: '/blog/ergonomic-chair-buying-guide/',
+    date: '2026-07-14',
+    category: 'Ergonomics',
+    readTime: '10',
+  },
+  {
+    title: 'Monitor Setup Guide: Single vs Dual vs Ultrawide for Productivity',
+    excerpt: 'The science of screen real estate. Compare single, dual, and ultrawide monitor setups and find the best configuration for your workflow.',
+    href: '/blog/monitor-setup-guide/',
+    date: '2026-07-14',
+    category: 'Tech & Gear',
+    readTime: '9',
+  },
+  {
+    title: '10 Small Space Home Office Ideas (That Actually Work)',
+    excerpt: 'No spare room? No problem. Creative, practical home office setups for closets, corners, bedrooms, and shared spaces — all from real remote workers.',
+    href: '/blog/small-space-home-office-ideas/',
+    date: '2026-07-13',
+    category: 'Home Office',
+    readTime: '8',
+  },
+  {
+    title: 'Standing Desk Guide: Manual vs Electric vs Converter — Which to Buy?',
+    excerpt: 'Everything you need to know about standing desks. Compare manual crank, electric motor, and desktop converters across price, stability, and ease of use.',
+    href: '/blog/standing-desk-guide/',
+    date: '2026-07-13',
+    category: 'Ergonomics',
+    readTime: '10',
+  },
+  {
+    title: 'Remote Work Productivity: 15 Science-Backed Tips to Stay Focused at Home',
+    excerpt: 'Distractions, procrastination, and Zoom fatigue are real. These 15 research-backed strategies will help you stay focused and get more done — without burning out.',
+    href: '/blog/remote-work-productivity-tips/',
+    date: '2026-07-12',
+    category: 'Productivity',
+    readTime: '9',
+  },
+  {
+    title: 'Best Webcams and Microphones for Remote Meetings in 2026',
+    excerpt: 'Look and sound professional on every call. Compare the best webcams and microphones for remote workers at every budget — from $30 to $300.',
+    href: '/blog/best-webcams-microphones-2026/',
+    date: '2026-07-12',
+    category: 'Tech & Gear',
+    readTime: '8',
+  },
+  {
+    title: 'How to Find Legitimate Remote Jobs: Platforms, Red Flags, and Tips',
+    excerpt: 'Not all "remote jobs" are real. Learn which platforms actually work, how to spot scams, and the exact steps to land a legitimate remote position.',
+    href: '/blog/find-legitimate-remote-jobs/',
+    date: '2026-07-11',
+    category: 'Career & Jobs',
+    readTime: '11',
+  },
+  {
+    title: 'Work-From-Home Burnout: How to Set Boundaries and Protect Your Mental Health',
+    excerpt: 'The line between work and life blurs when both happen at home. Practical strategies to set boundaries, manage stress, and avoid WFH burnout.',
+    href: '/blog/wfh-burnout-boundaries/',
+    date: '2026-07-11',
+    category: 'Lifestyle',
+    readTime: '9',
+  },
+  {
+    title: 'The Best Noise-Canceling Headphones for Deep Work at Home',
+    excerpt: 'Block out distractions and get into deep focus. Compare the top noise-canceling headphones for remote work — from budget picks to premium flagships.',
+    href: '/blog/best-noise-canceling-headphones/',
+    date: '2026-07-10',
+    category: 'Tech & Gear',
+    readTime: '9',
+  },
+  {
+    title: 'Creating a Home Office on a Budget: Full Setup for Under $300',
+    excerpt: 'You do not need to spend thousands. Here is a complete, ergonomic home office setup — desk, chair, monitor, keyboard, and lighting — all for under $300 total.',
+    href: '/blog/home-office-budget-setup-300/',
+    date: '2026-07-10',
+    category: 'Home Office',
+    readTime: '8',
+  },
+];
+
+const categories = ['All', 'Home Office', 'Ergonomics', 'Tech & Gear', 'Productivity', 'Tools & Software', 'Career & Jobs', 'Lifestyle'];
+---
+
+<BaseLayout
+  title="Guides & Articles — Remote Work & Home Office Tips"
+  description="In-depth guides on home office setup, ergonomics, remote work productivity, gear reviews, and career advice for remote workers. No sponsored fluff — just honest, practical advice."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">Guides & Articles</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Honest, in-depth guides on home office setup, ergonomics, gear, and remote work productivity. Written for real remote workers — no sponsored fluff.
+        </p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="mt-10 flex flex-wrap justify-center gap-2">
+        {categories.map((cat) => (
+          <button class="category-filter rounded-full px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 transition-colors" data-category={cat}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3" id="articles-grid">
+        {allArticles.map((article) => (
+          <div class="article-item" data-category={article.category}>
+            <ArticleCard {...article} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('.category-filter');
+  const articles = document.querySelectorAll('.article-item');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-category');
+
+      buttons.forEach((b) => b.classList.remove('bg-primary-600', 'text-white', 'border-primary-600'));
+      btn.classList.add('bg-primary-600', 'text-white', 'border-primary-600');
+
+      articles.forEach((article) => {
+        if (cat === 'All' || article.getAttribute('data-category') === cat) {
+          article.style.display = '';
+        } else {
+          article.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Activate "All" by default
+  const allBtn = document.querySelector('[data-category="All"]');
+  if (allBtn) {
+    allBtn.classList.add('bg-primary-600', 'text-white', 'border-primary-600');
+  }
+</script>

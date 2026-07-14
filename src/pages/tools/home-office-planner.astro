@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeOfficePlanner from '../../components/HomeOfficePlanner';
+---
+
+<BaseLayout
+  title="Home Office Planner — Design Your Perfect Workspace in 5 Minutes"
+  description="Answer 7 simple questions about your space, budget, and work style. Get a personalized home office setup plan with specific furniture, gear recommendations, and layout tips."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">📐 Home Office Planner</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          Answer a few questions about your space, budget, and work style. We will give you a personalized home office plan with specific furniture, gear, and layout recommendations.
+        </p>
+        <div class="mt-4 flex justify-center gap-6 text-sm text-gray-500">
+          <span>🕐 Takes ~3 minutes</span>
+          <span>🔒 No data collected</span>
+          <span>💯 Free</span>
+        </div>
+      </div>
+      <HomeOfficePlanner client:load />
+    </div>
+  </section>
+</BaseLayout>
