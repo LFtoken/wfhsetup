@@ -59,14 +59,25 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics (consent-based) -->
     <!-- TODO: Replace with your GA4 Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      // Only load GA if user has given cookie consent
+      (function() {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent === 'accepted') {
+          const gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          document.head.appendChild(gaScript);
+          gaScript.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          };
+        }
+      })();
     </script>
   </head>
   <body class="flex min-h-screen flex-col">
@@ -124,6 +135,8 @@ const {
               <li><a href="/about/" class="text-sm text-gray-600 hover:text-primary-700">About</a></li>
               <li><a href="/contact/" class="text-sm text-gray-600 hover:text-primary-700">Contact</a></li>
               <li><a href="/privacy/" class="text-sm text-gray-600 hover:text-primary-700">Privacy Policy</a></li>
+              <li><a href="/terms/" class="text-sm text-gray-600 hover:text-primary-700">Terms of Service</a></li>
+              <li><a href="#" id="cookie-settings-link" class="text-sm text-gray-600 hover:text-primary-700">Cookie Settings</a></li>
             </ul>
           </div>
         </div>
@@ -137,6 +150,67 @@ const {
       document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
         document.getElementById('mobile-menu')?.classList.toggle('hidden');
       });
+    </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] hidden">
+      <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-2xl">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="max-w-2xl">
+              <h3 class="text-sm font-semibold text-gray-900">This website uses cookies</h3>
+              <p class="mt-1 text-sm text-gray-600">
+                We use cookies for Google Analytics (to understand site traffic) and Google AdSense (to serve relevant ads).
+                By clicking "Accept All", you consent to all cookies.
+                You can also <a href="/privacy/" class="text-primary-600 underline">learn more</a> or change settings anytime.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 flex-shrink-0">
+              <button id="cookie-reject" class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                Essential Only
+              </button>
+              <button id="cookie-accept" class="rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-700 transition-colors">
+                Accept All
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        const banner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('cookie-accept');
+        const rejectBtn = document.getElementById('cookie-reject');
+
+        // Show banner if no consent stored
+        if (!localStorage.getItem('cookieConsent')) {
+          banner.classList.remove('hidden');
+        }
+
+        function acceptCookies() {
+          localStorage.setItem('cookieConsent', 'accepted');
+          banner.classList.add('hidden');
+          // Reload to activate GA
+          window.location.reload();
+        }
+
+        function rejectCookies() {
+          localStorage.setItem('cookieConsent', 'rejected');
+          banner.classList.add('hidden');
+        }
+
+        acceptBtn?.addEventListener('click', acceptCookies);
+        rejectBtn?.addEventListener('click', rejectCookies);
+
+        // Cookie settings link in footer — re-opens the banner
+        const settingsLink = document.getElementById('cookie-settings-link');
+        settingsLink?.addEventListener('click', (e) => {
+          e.preventDefault();
+          banner.classList.remove('hidden');
+        });
+      })();
     </script>
   </body>
 </html>
