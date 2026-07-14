@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   integrations: [react(), tailwind(), sitemap()],
-  site: 'https://remoteworkhq.com',
+  site: 'https://wfhsetup.com',
   output: 'static',
 });
