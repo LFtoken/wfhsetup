@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -84,5 +85,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>One last thing: you do not need to spend hundreds of dollars to sound good. A $60 Samson Q2U and a lamp pointed at your face will make you look and sound better than 90% of people on your next Zoom call. Do those two things first, then worry about upgrading your webcam.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Best Webcams and Microphones for Remote Meetings in 2026" />
+</article>
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -97,5 +98,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>Want to get a baseline of where you are at? Our <a href="/tools/productivity-scorecard/">WFH Productivity Scorecard</a> assesses your setup across workspace, habits, focus, tools, and wellness — and gives you a personal improvement plan.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Work-From-Home Burnout: How to Set Boundaries and Protect Your Mental Health" />
+</article>
 </BaseLayout>

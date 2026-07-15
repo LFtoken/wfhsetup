@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -84,5 +85,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>Wired backup: Bluetooth is convenient but introduces slight audio delay that can cause lip-sync issues on video calls. Having a wired option (USB-C or 3.5mm) as a backup is nice to have. The Sony and Bose both include a cable; the AirPods Max require a separate purchase.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="The Best Noise-Canceling Headphones for Deep Work at Home in 2026" />
+</article>
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -125,5 +126,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>Want to figure out the exact measurements for your setup? Our <a href="/tools/ergonomic-calculator/">Ergonomic Calculator</a> takes your height and desk type and tells you exactly how high your desk, chair, and monitor should be.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Ergonomic Chair Buying Guide: How to Choose the Right One for Your Body" />
+</article>
 </BaseLayout>

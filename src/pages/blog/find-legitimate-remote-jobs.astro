@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -80,5 +81,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>Ready to start searching? Our <a href="/tools/remote-job-finder/">Remote Job Finder</a> lets you filter platforms by your industry, experience level, and job type, then compare them side by side.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="How to Find Legitimate Remote Jobs: Platforms, Scams, and What Actually Works" />
+</article>
 </BaseLayout>

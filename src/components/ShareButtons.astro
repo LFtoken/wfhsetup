@@ -1,0 +1,117 @@
+---
+export interface Props {
+  url: string;
+  title: string;
+}
+
+const { url, title } = Astro.props;
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+
+const platforms = [
+  {
+    name: 'Twitter',
+    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+    icon: 'M8 2H1l8.26 11.014L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886L8 2Z',
+    color: 'hover:bg-black hover:text-white',
+    label: 'X',
+  },
+  {
+    name: 'Facebook',
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    icon: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z',
+    color: 'hover:bg-[#1877F2] hover:text-white',
+    label: 'Share',
+  },
+  {
+    name: 'LinkedIn',
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+    color: 'hover:bg-[#0A66C2] hover:text-white',
+    label: 'Share',
+  },
+  {
+    name: 'Reddit',
+    href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
+    icon: 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z m4.8-5.68c.35-.35.35-.92 0-1.27-.32-.32-.84-.35-1.2-.08-.64-.45-1.5-.73-2.43-.76l.5-2.45 1.75.38c.01.49.4.88.9.88.5 0 .9-.42.9-.92 0-.5-.4-.9-.9-.9-.39 0-.7.24-.83.57l-2-.43-.65 3.04c-.97.03-1.87.3-2.53.78-.37-.25-.87-.22-1.18.1-.37.37-.4.93-.07 1.28.15.15.36.22.57.2.28.13.59.2.92.2.12 0 .24-.01.36-.03.7.59 1.6.91 2.68.91 1.09 0 1.98-.35 2.7-.93.1.02.21.03.31.03.35 0 .67-.09.93-.24z m-5.97-1.76c.33-.37.86-.37 1.2.02.33.38.87.38 1.2-.02.33-.37.43-.78.12-1.04-.51.13-1.15.13-1.68 0-.3.28-.35.68-.1 1.04z m2.57 2.78c-.5 0-.9-.4-.9-.92s.4-.9.9-.9.9.4.9.9-.4.92-.9.92z',
+    color: 'hover:bg-[#FF4500] hover:text-white',
+    label: 'Share',
+  },
+  {
+    name: 'Email',
+    href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+    icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z m16 4-8 5-8-5v2l8 5 8-5z',
+    color: 'hover:bg-gray-600 hover:text-white',
+    label: 'Email',
+  },
+  {
+    name: 'Copy',
+    href: '#',
+    icon: 'M8 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2M8 2h2M8 2a2 2 0 0 1 2 2M8 2v2m2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2m-2-6v6m0-6 2-2m-2 2-2-2',
+    color: 'hover:bg-primary-600 hover:text-white',
+    label: 'Copy link',
+    isCopy: true,
+  },
+];
+---
+
+<div class="mt-10 pt-6 border-t border-gray-200">
+  <div class="flex flex-wrap items-center gap-2">
+    <span class="text-xs font-medium text-gray-400 uppercase tracking-wider mr-1">Share:</span>
+    {platforms.map((p) => (
+      p.isCopy ? (
+        <button
+          class="share-btn copy-btn inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors {p.color}"
+          data-url={url}
+          title="Copy link"
+        >
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d={p.icon} /></svg>
+          {p.label}
+        </button>
+      ) : (
+        <a
+          href={p.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 no-underline transition-colors {p.color}"
+          title={`Share on ${p.name}`}
+        >
+          <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d={p.icon} /></svg>
+          {p.label}
+        </a>
+      )
+    ))}
+  </div>
+</div>
+
+<script>
+  // Copy link functionality
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const url = (btn as HTMLElement).dataset.url;
+      if (!url) return;
+      try {
+        await navigator.clipboard.writeText(url);
+        btn.textContent = 'Copied!';
+        btn.classList.add('bg-green-50', 'border-green-300', 'text-green-700');
+        setTimeout(() => {
+          btn.innerHTML = `<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2M8 2h2M8 2a2 2 0 0 1 2 2M8 2v2m2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2m-2-6v6m0-6 2-2m-2 2-2-2" /></svg>Copy link`;
+          btn.classList.remove('bg-green-50', 'border-green-300', 'text-green-700');
+        }, 2000);
+      } catch {
+        // Fallback for older browsers
+        const input = document.createElement('input');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.innerHTML = `<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2M8 2h2M8 2a2 2 0 0 1 2 2M8 2v2m2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2m-2-6v6m0-6 2-2m-2 2-2-2" /></svg>Copy link`;
+        }, 2000);
+      }
+    });
+  });
+</script>

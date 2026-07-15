@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -88,5 +89,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>One afternoon. Less than $70. And your desk goes from chaos to clean in a way that makes every workday feel just a little bit better. That is a pretty good return on investment.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Home Office Cable Management: A Complete Guide to a Clean Desk" />
+</article>
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -138,5 +139,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="The Ultimate Home Office Setup Guide 2026: Everything You Need" />
+</article>
 </BaseLayout>

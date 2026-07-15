@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -82,5 +83,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>After you get your desk set up, use our <a href="/tools/ergonomic-calculator/">Ergonomic Calculator</a> to find the right sitting and standing heights for your body.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Standing Desk Guide: Manual vs Electric vs Converter — Which to Buy?" />
+</article>
 </BaseLayout>

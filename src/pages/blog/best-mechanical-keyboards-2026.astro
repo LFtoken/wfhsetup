@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -98,5 +99,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>First mechanical keyboard: Keychron V1 with Brown switches ($65-85). Just want it to work: Logitech MX Mechanical Mini ($150). Travel or coffee shop: NuPhy Air75 V2 ($120-140). Wrist pain or RSI: ZSA Moonlander ($365). Budget trial: Royal Kludge RK61 ($45). And for the love of your coworkers, do not buy clicky blue switches if you share a room.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Best Mechanical Keyboards for Remote Work in 2026: Comfort, Sound </article> Value" />
+</article>
 </BaseLayout>

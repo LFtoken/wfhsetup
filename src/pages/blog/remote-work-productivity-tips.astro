@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -136,5 +137,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>Want to see where you stand? Our <a href="/tools/productivity-scorecard/">WFH Productivity Scorecard</a> takes about five minutes and gives you a personal breakdown across workspace, habits, focus, tools, and wellness — with specific things to improve.</p>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Remote Work Productivity: 15 Science-Backed Tips to Stay Focused at Home" />
+</article>
 </BaseLayout>

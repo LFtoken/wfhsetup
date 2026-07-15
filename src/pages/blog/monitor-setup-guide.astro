@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 ---
 
 <BaseLayout
@@ -79,5 +80,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </div>
     </div>
-  </article>
+  <ShareButtons url={Astro.url.href} title="Monitor Setup Guide: Single vs Dual vs Ultrawide for Productivity" />
+</article>
 </BaseLayout>
