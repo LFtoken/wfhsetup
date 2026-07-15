@@ -60,7 +60,6 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Google Analytics (consent-based) -->
-    <!-- TODO: Replace with your GA4 Measurement ID -->
     <script>
       // Only load GA if user has given cookie consent
       (function() {
@@ -68,13 +67,13 @@ const {
         if (consent === 'accepted') {
           const gaScript = document.createElement('script');
           gaScript.async = true;
-          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-WE24ZRCD9Z';
           document.head.appendChild(gaScript);
           gaScript.onload = function() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-WE24ZRCD9Z');
           };
         }
       })();
