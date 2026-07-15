@@ -153,22 +153,23 @@ const {
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] hidden">
-      <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-2xl">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="mx-auto max-w-7xl px-3 py-3 sm:px-6 lg:px-8">
+        <div class="relative rounded-2xl border border-gray-200 bg-white p-4 sm:p-6 shadow-2xl">
+          <button id="cookie-close" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors p-1" aria-label="Close cookie banner">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:pr-8">
             <div class="max-w-2xl">
               <h3 class="text-sm font-semibold text-gray-900">This website uses cookies</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                We use cookies for Google Analytics (to understand site traffic) and Google AdSense (to serve relevant ads).
-                By clicking "Accept All", you consent to all cookies.
-                You can also <a href="/privacy/" class="text-primary-600 underline">learn more</a> or change settings anytime.
+              <p class="mt-1 text-xs sm:text-sm text-gray-600">
+                We use cookies for analytics and ads. <a href="/privacy/" class="text-primary-600 underline">Learn more</a>
               </p>
             </div>
-            <div class="flex items-center gap-3 flex-shrink-0">
-              <button id="cookie-reject" class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <button id="cookie-reject" class="rounded-lg border border-gray-300 px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors min-h-[44px]">
                 Essential Only
               </button>
-              <button id="cookie-accept" class="rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-700 transition-colors">
+              <button id="cookie-accept" class="rounded-lg bg-primary-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-primary-700 transition-colors min-h-[44px]">
                 Accept All
               </button>
             </div>
@@ -182,32 +183,44 @@ const {
         const banner = document.getElementById('cookie-banner');
         const acceptBtn = document.getElementById('cookie-accept');
         const rejectBtn = document.getElementById('cookie-reject');
+        const closeBtn = document.getElementById('cookie-close');
+        const body = document.body;
+
+        function showBanner() {
+          banner.classList.remove('hidden');
+          body.style.paddingBottom = banner.offsetHeight + 'px';
+        }
+
+        function hideBanner() {
+          banner.classList.add('hidden');
+          body.style.paddingBottom = '0px';
+        }
 
         // Show banner if no consent stored
         if (!localStorage.getItem('cookieConsent')) {
-          banner.classList.remove('hidden');
+          showBanner();
         }
 
         function acceptCookies() {
           localStorage.setItem('cookieConsent', 'accepted');
-          banner.classList.add('hidden');
-          // Reload to activate GA
+          hideBanner();
           window.location.reload();
         }
 
         function rejectCookies() {
           localStorage.setItem('cookieConsent', 'rejected');
-          banner.classList.add('hidden');
+          hideBanner();
         }
 
         acceptBtn?.addEventListener('click', acceptCookies);
         rejectBtn?.addEventListener('click', rejectCookies);
+        closeBtn?.addEventListener('click', rejectCookies);
 
         // Cookie settings link in footer — re-opens the banner
         const settingsLink = document.getElementById('cookie-settings-link');
         settingsLink?.addEventListener('click', (e) => {
           e.preventDefault();
-          banner.classList.remove('hidden');
+          showBanner();
         });
       })();
     </script>

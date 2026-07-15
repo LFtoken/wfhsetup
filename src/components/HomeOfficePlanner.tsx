@@ -301,7 +301,7 @@ export default function HomeOfficePlanner() {
 
       {step > 0 && (
         <div className="mt-4 text-center">
-          <button onClick={handleBack} className="text-sm text-gray-500 hover:text-gray-700">
+          <button onClick={handleBack} className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors min-h-[44px]">
             ← Back
           </button>
         </div>

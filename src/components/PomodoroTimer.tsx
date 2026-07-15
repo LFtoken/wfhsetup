@@ -106,7 +106,7 @@ export default function PomodoroTimer() {
   return (
     <div className="mx-auto max-w-md text-center">
       {/* Presets */}
-      <div className="flex justify-center gap-2 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
         {PRESETS.map((p, i) => (
           <button
             key={p.label}

@@ -127,14 +127,14 @@ const categories = ['All', 'Home Office', 'Ergonomics', 'Tech & Gear', 'Producti
   <section class="py-16 bg-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">Guides & Articles</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">Guides & Articles</h1>
         <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
           Honest, in-depth guides on home office setup, ergonomics, gear, and remote work productivity. Written for real remote workers — no sponsored fluff.
         </p>
       </div>
 
       <!-- Category Filters -->
-      <div class="mt-10 flex flex-wrap justify-center gap-2">
+      <div class="mt-10 flex flex-nowrap justify-start sm:justify-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
         {categories.map((cat) => (
           <button class="category-filter rounded-full px-4 py-2 text-sm font-medium border border-gray-300 text-gray-700 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 transition-colors" data-category={cat}>
             {cat}

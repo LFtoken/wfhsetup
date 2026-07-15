@@ -313,7 +313,7 @@ export default function ProductivityScorecard() {
               const lx = radarCenter + (radarRadius + 35) * Math.cos(angle);
               const ly = radarCenter + (radarRadius + 35) * Math.sin(angle);
               return (
-                <text key={cat} x={lx} y={ly} textAnchor="middle" dominantBaseline="middle" className="text-xs fill-gray-600" fontSize="11">
+                <text key={cat} x={lx} y={ly} textAnchor="middle" dominantBaseline="middle" className="fill-gray-600" fontSize="13" fontWeight="500">
                   {categoryLabels[cat]} {categoryScores[cat].avg.toFixed(1)}
                 </text>
               );
