@@ -23,30 +23,70 @@ import PomodoroTimer from '../../components/PomodoroTimer';
       <PomodoroTimer client:load />
 
       <!-- Download section -->
-      <div class="mt-16 mx-auto max-w-md">
-        <div class="rounded-2xl bg-gray-50 border border-gray-200 p-6 text-center">
-          <h2 class="text-lg font-semibold text-gray-900">💻 Download Desktop Timer</h2>
-          <p class="mt-2 text-sm text-gray-600">
-            A tiny floating Pomodoro timer. No install — double-click to run. Drag to move, X to close.
+      <div class="mt-16 mx-auto max-w-2xl">
+        <div class="rounded-2xl bg-gray-50 border border-gray-200 p-8">
+          <h2 class="text-xl font-bold text-gray-900 text-center">💻 Make It a Desktop Timer</h2>
+          <p class="mt-2 text-sm text-gray-600 text-center">
+            Download this timer as a standalone file so it stays visible while you work in other apps.
           </p>
-          <div class="mt-4 flex flex-col gap-3 items-center">
-            <a href="/pomodoro-app/PomodoroTimer.zip" class="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 text-sm font-semibold text-white hover:bg-primary-700 transition-colors no-underline w-full sm:w-auto">
-              ⬇ Download for Windows
-            </a>
-            <span class="text-xs text-gray-400">
-              3 KB zip &middot; Unzip and double-click &middot; No install
-            </span>
-            <div class="border-t border-gray-200 w-full my-2"></div>
-            <a href="/pomodoro-timer.html" class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors no-underline w-full sm:w-auto">
-              ⬇ Download for Mac/Linux
-            </a>
-            <span class="text-xs text-gray-400">
-              3 KB &middot; Works in any browser &middot; Offline
-            </span>
+
+          <!-- Step 1 -->
+          <div class="mt-8 flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 text-white flex items-center justify-center text-sm font-bold">1</div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900">Download the file</h3>
+              <p class="text-sm text-gray-600 mt-1">Click the button below to save <code class="bg-gray-200 px-1 rounded">pomodoro-timer.html</code> to your computer.</p>
+              <a href="/pomodoro-timer.html" download class="mt-3 inline-flex items-center rounded-lg bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-700 transition-colors no-underline">
+                ⬇ Download Timer (3 KB)
+              </a>
+            </div>
           </div>
-          <p class="mt-4 text-xs text-gray-400">
-            <strong>How to use:</strong> Download the zip, extract <code>PomodoroTimer.hta</code>, double-click to run. First time Windows may ask which program to use — choose <strong>Microsoft HTML Application Host</strong> and check "Always".
-          </p>
+
+          <!-- Step 2 -->
+          <div class="mt-6 flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 text-white flex items-center justify-center text-sm font-bold">2</div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900">Open it as a standalone window</h3>
+              <p class="text-sm text-gray-600 mt-1">Pick the method that works for you:</p>
+              <div class="mt-3 space-y-3">
+                <div class="rounded-lg bg-white border border-gray-200 p-3">
+                  <p class="text-sm font-medium text-gray-800">🪟 Method A — App Window (best)</p>
+                  <ol class="text-sm text-gray-600 mt-1 space-y-1 list-decimal list-inside">
+                    <li>Right-click the downloaded file → <strong>Open with → Google Chrome</strong></li>
+                    <li>In Chrome: click the three-dot menu (⋮) → <strong>Cast, Save and Share → Create Shortcut</strong></li>
+                    <li>Check <strong>"Open as window"</strong> → Create</li>
+                    <li>A clean, borderless timer window appears. It stays in your taskbar like a real app.</li>
+                  </ol>
+                </div>
+                <div class="rounded-lg bg-white border border-gray-200 p-3">
+                  <p class="text-sm font-medium text-gray-800">📌 Method B — Always on Top</p>
+                  <ol class="text-sm text-gray-600 mt-1 space-y-1 list-decimal list-inside">
+                    <li>Open the file in any browser</li>
+                    <li>Resize the window to a small square</li>
+                    <li>Install <a href="https://learn.microsoft.com/en-us/windows/powertoys/" class="text-primary-600 underline" target="_blank">Microsoft PowerToys</a> (free, official Microsoft tool)</li>
+                    <li>Select the timer window and press <strong>Win + Ctrl + T</strong> to pin it on top</li>
+                  </ol>
+                </div>
+                <div class="rounded-lg bg-white border border-gray-200 p-3">
+                  <p class="text-sm font-medium text-gray-800">📱 Method C — Phone / Tablet</p>
+                  <p class="text-sm text-gray-600 mt-1">
+                    The online timer works perfectly on mobile. Just open <strong>wfhsetup.com/tools/pomodoro-timer/</strong> on your phone, add it to your home screen, and keep it next to your keyboard.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="mt-6 flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 text-white flex items-center justify-center text-sm font-bold">3</div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900">Start your first focus session</h3>
+              <p class="text-sm text-gray-600 mt-1">
+                Pick one task. Start the 25-minute timer. Work until it rings. Take a 5-minute break. Then repeat. After 4 sessions, take a longer 15-minute break. That is the entire Pomodoro system — simple, but surprisingly effective.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
