@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PomodoroTimer from '../../components/PomodoroTimer';
+---
+
+<BaseLayout
+  title="Free Pomodoro Timer — Stay Focused & Beat Procrastination"
+  description="A simple, beautiful Pomodoro timer that runs in your browser. 25-minute focus sessions, 5-minute breaks. No sign-up, no ads, no distractions."
+>
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">🍅 Pomodoro Timer</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          A clean, distraction-free Pomodoro timer to help you focus. 25 minutes of deep work, then a 5-minute break. Repeat. No account needed — it just works.
+        </p>
+        <div class="mt-4 flex justify-center gap-6 text-sm text-gray-500">
+          <span>🔒 Runs in your browser</span>
+          <span>📱 Works on mobile</span>
+          <span>💯 Free forever</span>
+        </div>
+      </div>
+      <PomodoroTimer client:load />
+    </div>
+  </section>
+</BaseLayout>
