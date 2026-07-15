@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍅 Pomodoro Timer</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+    border-radius: 16px;
+    -webkit-app-region: drag;
+  }
+  .container {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 320px;
+    -webkit-app-region: no-drag;
+  }
+  .timer-ring {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .time-display {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .time {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #f5e0dc;
+  }
+  .label {
+    font-size: 10px;
+    color: #a6adc8;
+    margin-top: 2px;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .presets {
+    display: flex;
+    gap: 4px;
+  }
+  .preset {
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid #45475a;
+    background: transparent;
+    color: #a6adc8;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .preset:hover { background: #313244; color: #cdd6f4; }
+  .preset.active { background: #cba6f7; color: #1e1e2e; border-color: #cba6f7; font-weight: 600; }
+  .btn-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-start {
+    background: #a6e3a1;
+    color: #1e1e2e;
+  }
+  .btn-start:hover { background: #94e2d5; }
+  .btn-pause {
+    background: #f9e2af;
+    color: #1e1e2e;
+  }
+  .btn-pause:hover { background: #f5e0dc; }
+  .btn-reset {
+    background: transparent;
+    border: 1px solid #45475a;
+    color: #a6adc8;
+  }
+  .btn-reset:hover { background: #313244; color: #cdd6f4; }
+  .btn-dl {
+    background: transparent;
+    border: 1px solid #45475a;
+    color: #a6adc8;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .btn-dl:hover { background: #313244; color: #cdd6f4; }
+  .session-count {
+    font-size: 11px;
+    color: #6c7086;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="timer-ring">
+    <svg width="90" height="90" viewBox="0 0 90 90" style="transform: rotate(-90deg)">
+      <circle cx="45" cy="45" r="38" fill="none" stroke="#313244" stroke-width="5"/>
+      <circle id="progress" cx="45" cy="45" r="38" fill="none" stroke="#cba6f7" stroke-width="5" stroke-linecap="round"
+        stroke-dasharray="238.76" stroke-dashoffset="0"/>
+    </svg>
+    <div class="time-display">
+      <span class="time" id="clock">25:00</span>
+      <span class="label" id="status">Ready</span>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="presets">
+      <button class="preset active" data-min="25" data-label="Focus">25m Focus</button>
+      <button class="preset" data-min="5" data-label="Break">5m Break</button>
+      <button class="preset" data-min="15" data-label="Long">15m Long</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-start" id="startBtn">Start</button>
+      <button class="btn btn-reset" id="resetBtn">Reset</button>
+    </div>
+    <div class="session-count"><span id="sessions">0</span> sessions</div>
+  </div>
+</div>
+
+<script>
+const clock = document.getElementById('clock');
+const statusEl = document.getElementById('status');
+const progressCircle = document.getElementById('progress');
+const startBtn = document.getElementById('startBtn');
+const resetBtn = document.getElementById('resetBtn');
+const sessionsEl = document.getElementById('sessions');
+const presets = document.querySelectorAll('.preset');
+const circumference = 2 * Math.PI * 38;
+
+let totalSeconds = 25 * 60;
+let remaining = totalSeconds;
+let interval = null;
+let running = false;
+let sessions = 0;
+let currentLabel = 'Focus';
+
+function updateDisplay() {
+  const m = Math.floor(remaining / 60);
+  const s = remaining % 60;
+  clock.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  const offset = circumference * (1 - remaining / totalSeconds);
+  progressCircle.setAttribute('stroke-dashoffset', offset);
+}
+
+function tick() {
+  if (remaining <= 0) {
+    clearInterval(interval);
+    interval = null;
+    running = false;
+    startBtn.textContent = 'Start';
+    startBtn.className = 'btn btn-start';
+    if (currentLabel === 'Focus') {
+      sessions++;
+      sessionsEl.textContent = sessions;
+    }
+    statusEl.textContent = 'Done!';
+    document.title = 'Done!';
+    return;
+  }
+  remaining--;
+  updateDisplay();
+  document.title = clock.textContent + ' - ' + currentLabel;
+}
+
+function startPause() {
+  if (running) {
+    clearInterval(interval);
+    interval = null;
+    running = false;
+    startBtn.textContent = 'Resume';
+    startBtn.className = 'btn btn-pause';
+    statusEl.textContent = 'Paused';
+  } else {
+    if (remaining <= 0) remaining = totalSeconds;
+    interval = setInterval(tick, 1000);
+    running = true;
+    startBtn.textContent = 'Pause';
+    startBtn.className = 'btn btn-pause';
+    statusEl.textContent = currentLabel;
+  }
+}
+
+function reset() {
+  clearInterval(interval);
+  interval = null;
+  running = false;
+  remaining = totalSeconds;
+  startBtn.textContent = 'Start';
+  startBtn.className = 'btn btn-start';
+  statusEl.textContent = 'Ready';
+  document.title = 'Pomodoro Timer';
+  updateDisplay();
+}
+
+presets.forEach(btn => {
+  btn.addEventListener('click', () => {
+    presets.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const mins = parseInt(btn.dataset.min);
+    currentLabel = btn.dataset.label;
+    totalSeconds = mins * 60;
+    clearInterval(interval);
+    interval = null;
+    running = false;
+    remaining = totalSeconds;
+    startBtn.textContent = 'Start';
+    startBtn.className = 'btn btn-start';
+    statusEl.textContent = 'Ready';
+    updateDisplay();
+  });
+});
+
+startBtn.addEventListener('click', startPause);
+resetBtn.addEventListener('click', reset);
+updateDisplay();
+</script>
+</body>
+</html>
